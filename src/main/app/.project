@@ -1,0 +1,14 @@
+<projectDescription>
+  <name>tweetbook-oauth2-provider</name>
+  <comment>OAuth2 Provider</comment>
+  <projects/>
+  <buildSpec>
+    <buildCommand>
+      <name>org.mule.tooling.core.muleBuilder</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+    <nature>org.mule.tooling.core.muleNature</nature>
+  </natures>
+</projectDescription>
