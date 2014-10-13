@@ -46,7 +46,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
                 <oauth2-provider:client clientId="${client_id}" secret="${client_secret}"
                                         type="CONFIDENTIAL" clientName="Mule Bookstore" description="Mule-powered On-line Bookstore">
                     <oauth2-provider:redirect-uris>
-                        <oauth2-provider:redirect-uri>http://mtpc701:8088/oauth-mr-integration/*</oauth2-provider:redirect-uri>
+                        <oauth2-provider:redirect-uri>http://mtpc701:8088/oauth-mr-integration/request-token</oauth2-provider:redirect-uri>
                     </oauth2-provider:redirect-uris>
                     <oauth2-provider:authorized-grant-types>
                         <oauth2-provider:authorized-grant-type>AUTHORIZATION_CODE</oauth2-provider:authorized-grant-type>
@@ -64,7 +64,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
     <flow name="publicProfile" doc:name="publicProfile">
         <http:inbound-endpoint address="http://172.19.14.234:8084/tweetbook/api/profile" exchange-pattern="request-response" doc:name="Profile API"/>
         <logger message="PROFILE: #[payload]" level="INFO" doc:name="Logger"/>
-        <oauth2-provider:validate scopes="READ" config-ref="oauth2Provider"/>
+        <oauth2-provider:validate scopes="READ_PROFILE" config-ref="oauth2Provider"/>
         <component class="org.mule.security.examples.oauth2.ProfileLookupComponent" doc:name="Profile Lookup"/>
         <logger message="Payload: #[payload]" level="INFO" doc:name="Logger"/>
     </flow>
@@ -72,7 +72,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
     <flow name="publicBookshelf" doc:name="publicBookshelf">
         <http:inbound-endpoint address="http://172.19.14.234:8084/tweetbook/api/bookshelf" exchange-pattern="request-response" doc:name="Bookshelf API"/>
         <logger message="Booksheld: #[payload]" level="INFO" doc:name="Logger"/>
-        <oauth2-provider:validate scopes="READ" config-ref="oauth2Provider"/>
+        <oauth2-provider:validate scopes="READ_BOOKSHELF" config-ref="oauth2Provider"/>
         <set-payload value="The Lord of the Rings,The Hitchhiker's Guide to the Galaxy" doc:name="Retrieve Bookshelf"/>
         <logger message="Payload: #[payload]" level="INFO" doc:name="Logger"/>
     </flow>
